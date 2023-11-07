@@ -1,0 +1,30 @@
+
+
+.box_container {
+  height: calc(100% - 2rem);
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+}
+
+  .row {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .box {
+    display: flex;
+    background-color: #2b8585;
+    height: 100%;
+    width: 100%;
+  }
+
+
+.player1 {
+  background-color: red;
+}
+
+.player2 {
+  background-color: yellow;
+}
