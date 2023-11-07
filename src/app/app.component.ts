@@ -131,45 +131,33 @@ export class AppComponent implements OnInit{
   }
 
   checkForDiagonaleWin(rowIndex: number, boxIndex: number){
-
-    this.right(rowIndex, boxIndex)
-
-  }
-
-  right(rowIndex: number, boxIndex: number){
-    var filterdBoxes: Box[] = [];
-    var counter = 1;
-    var exist = true;
-    var t = 1;
-    var k = 1;
-
-    //rechts nach oben
-    while(exist)
-    if(this.boxes[rowIndex-t][boxIndex+k]){
-      filterdBoxes.push(this.boxes[rowIndex-t][boxIndex+k]);
-      t++;
-      k++;
-    }else {
-      exist = false;
-      t = 1;
-      k = 1;
+    let count = 0;
+    for (let i = -3; i <= 3; i++) {
+        const r = rowIndex + i;
+        const c = boxIndex + i;
+        if (r >= 0 && r < 6 && c >= 0 && c < 7 && this.boxes[r][c].color === this.currentPlayer.color) {
+            count++;
+            if (count === 4) {
+                this.isWin=true;
+            }
+        } else {
+            count = 0;
+        }
     }
 
-    //links nach unten
-    exist = true;
-
-    while(exist)
-      if(this.boxes[rowIndex+t][boxIndex-k]){
-        filterdBoxes.push(this.boxes[rowIndex+t][boxIndex-k]);
-        t++;
-        k++;
-      }else {
-        exist = false;
-        t = 1;
-        k = 1;
-      }
-
-      console.log(filterdBoxes.sort())
+    count = 0;
+    for (let i = -3; i <= 3; i++) {
+        const r = rowIndex + i;
+        const c = boxIndex - i;
+        if (r >= 0 && r < 6 && c >= 0 && c < 7 && this.boxes[r][c].color === this.currentPlayer.color) {
+            count++;
+            if (count === 4) {
+                this.isWin = true;
+            }
+        } else {
+            count = 0;
+        }
+    }
   }
 
   showWinner(){
